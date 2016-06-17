@@ -35,16 +35,21 @@ class MainTest extends TestCase
      */
     public function testRegistration()
     {
+        $faker = Faker\Factory::create();
+        $email = $faker->safeEmail;
+        $password = str_random(10);
+        $name = $faker->name;
+
         $this->visit('/register');
-        $this->type('test', 'name');
-        $this->type('test@email.com', 'email');
-        $this->type('1234567', 'password');
-        $this->type('1234567', 'password_confirmation');
+        $this->type($name, 'name');
+        $this->type($email, 'email');
+        $this->type($password, 'password');
+        $this->type($password, 'password_confirmation');
         $this->press('Register');
         $this->seePageIs('/files');
-        $this->see('test');
-        $this->seeInDatabase('users', ['email' => 'test@email.com']);
-        $this->seeInDatabase('users', ['name' => 'test']);
+        $this->see($name);
+        $this->seeInDatabase('users', ['email' => $email]);
+        $this->seeInDatabase('users', ['name' => $name]);
         $this->click('Logout');
         $this->seePageIs('/');
         $this->see('Login');
