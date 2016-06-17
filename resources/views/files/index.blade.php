@@ -11,27 +11,27 @@
     @include('common.errors')
 
     <!-- New file Form -->
-        <form action="{{ url('file') }}" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
+        {!! Form::open(array('url'=>url('file'),'method'=>'POST', 'files'=>true,'class' => 'form-horizontal')) !!}
+        <div class="form-group">
+            <label for="file-name" class="col-sm-3 control-label">File</label>
 
-        <!-- file Name -->
-            <div class="form-group">
-                <label for="file-name" class="col-sm-3 control-label">File</label>
-
-                <div class="col-sm-6">
-                    {{ Form::file('file', ['class' => 'field']) }}
-                </div>
+            <div class="col-sm-6">
+                {!! Form::file('file') !!}
             </div>
-
-            <!-- Add file Button -->
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> Add file
-                    </button>
-                </div>
+            <p class="errors">{!!$errors->first('file')!!}</p>
+            @if(Session::has('error'))
+                <p class="errors">{!! Session::get('error') !!}</p>
+            @endif
+        </div>
+        <div id="success"> </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-plus"></i> Add file
+                </button>
             </div>
-        </form>
+        </div>
+        {!! Form::close() !!}
     </div>
 
     <!-- Current files -->
