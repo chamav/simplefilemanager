@@ -51,7 +51,7 @@ class UserFilesController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('file');
-        if ($file->isValid()) {
+        if ($request->hasFile('file') && $file->isValid()) {
             $hash = hash_file('md5', $file->getPathname());
             $size = $file->getSize();
             if(!Storage::disk('local')->exists($hash))
