@@ -2,7 +2,7 @@
 
 Have Vagrantfile used virtulabox.
 Before launching your Homestead environment, you must install VirtualBox and Vagrant.
-But you need to add the correct settings in configure file /homestead/Homestead.yaml
+Also you need to add the correct settings in configure file /homestead/Homestead.yaml
 
 ```
 folders:
