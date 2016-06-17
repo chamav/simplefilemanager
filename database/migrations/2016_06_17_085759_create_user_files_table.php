@@ -18,7 +18,8 @@ class CreateUserFilesTable extends Migration
             $table->string('name');
             $table->string('hash', 200)->unique();
             $table->bigInteger('size',false, true);
-            $table->integer('user_id')->index();
+            $table->integer('user_id',false,true)->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
         });
     }
