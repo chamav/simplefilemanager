@@ -21,13 +21,25 @@ class UserFilePolicy
     }
 
     /**
-     * Determine if the given user can delete the given task.
+     * Determine if the given user can delete the given file.
      *
      * @param  User  $user
      * @param  UserFile  $file
      * @return bool
      */
     public function destroy(User $user, UserFile $file)
+    {
+        return $user->id === $file->user_id;
+    }
+
+    /**
+     * Determine if the given user can download the given file.
+     *
+     * @param  User  $user
+     * @param  UserFile  $file
+     * @return bool
+     */
+    public function download(User $user, UserFile $file)
     {
         return $user->id === $file->user_id;
     }

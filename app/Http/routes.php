@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/files', 'UserFilesController@index');
 Route::post('/file', 'UserFilesController@store');
 Route::delete('/file/{file}', 'UserFilesController@destroy');
+Route::get('/file/{file}', 'UserFilesController@download');

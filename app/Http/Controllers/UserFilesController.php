@@ -69,7 +69,7 @@ class UserFilesController extends Controller
     }
 
     /**
-     * Destroy the given task.
+     * Destroy the given file.
      *
      * @param  Request  $request
      * @param  UserFile  $file
@@ -81,5 +81,19 @@ class UserFilesController extends Controller
         $file->delete();
 
         return redirect('/files');
+    }
+
+     /**
+      * Dowload file.
+      *
+      * @param  Request  $request
+      * @param  UserFile  $file
+      * @return Response
+      */
+    public function download(Request $request, UserFile $file)
+    {
+        $this->authorize('download', $file);
+        if(!$file->trashed())
+            return response()->download('../storage/app/'.$file->hash, $file->name);
     }
 }

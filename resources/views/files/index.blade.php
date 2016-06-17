@@ -58,7 +58,16 @@
                             <td class="table-text">
                                 <div>{{ $file->name }}</div>
                             </td>
+                            <td>
+                                <form action="{{ url('file/'.$file->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('GET') }}
 
+                                    <button type="submit" id="donload-file-{{ $file->id }}" class="btn">
+                                        <i class="fa fa-btn"></i>Download
+                                    </button>
+                                </form>
+                            </td>
                             <td>
                                 <form action="{{ url('file/'.$file->id) }}" method="POST">
                                     {{ csrf_field() }}
