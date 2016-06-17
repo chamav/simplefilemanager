@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\FileRepository;
 use Storage;
+use File;
+use Illuminate\Http\Response;
 
 class UserFilesController extends Controller
 {
@@ -55,7 +57,8 @@ class UserFilesController extends Controller
             $hash = hash_file('md5', $file->getPathname());
             $size = $file->getSize();
             if(!Storage::disk('local')->exists($hash))
-                $file->move('../storage/app', $hash);
+                Storage::disk('local')->put($hash, File::get($file));
+                //$file->move('../storage/app', $hash);
 
             $request->user()->files()->create([
                 'name' => $file->getClientOriginalName(),
@@ -93,7 +96,11 @@ class UserFilesController extends Controller
     public function download(Request $request, UserFile $file)
     {
         $this->authorize('download', $file);
-        if(!$file->trashed())
-            return response()->download('../storage/app/'.$file->hash, $file->name);
+        if(!$file->trashed()){
+            $content = Storage::disk('local')->get($file->hash);
+            return response($content, 200)->header('Content-Disposition','attachment; filename="'.$file->name.'"');
+            /*return response()->download('../storage/app/'.$file->hash, $file->name);*/
+        }
+
     }
 }
