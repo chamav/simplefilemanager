@@ -16,7 +16,7 @@ class CreateUserFilesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->string('hash', 200)->unique();
+            $table->string('hash', 32)->index();
             $table->bigInteger('size',false, true);
             $table->integer('user_id',false,true)->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

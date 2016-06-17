@@ -15,6 +15,7 @@ class FileRepository
     public function forUser(User $user)
     {
         return $user->files()
+            ->whereNull('deleted_at')
             ->orderBy('created_at', 'asc')
             ->get();
     }

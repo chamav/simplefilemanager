@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\UserFile;
 use Illuminate\Http\Request;
 
-//use App\User_files;
 use App\Http\Requests;
 use App\Repositories\FileRepository;
+use Storage;
 
 class UserFilesController extends Controller
 {
@@ -50,16 +50,20 @@ class UserFilesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-        ]);
+        $file = $request->file('file');
+        if ($file->isValid()) {
+            $hash = hash_file('md5', $file->getPathname());
+            $size = $file->getSize();
+            if(!Storage::disk('local')->exists($hash))
+                $file->move('../storage/app', $hash);
 
-        $request->user()->files()->create([
-            'name' => $request->name,
-            'hash' => hash('md5', rand()),
-            'size' => 0,
-            'user_id' => $request->user()->id,
-        ]);
+            $request->user()->files()->create([
+                'name' => $file->getClientOriginalName(),
+                'hash' => $hash,
+                'size' => $size,
+                'user_id' => $request->user()->id,
+            ]);
+        }
 
         return redirect('/files');
     }
