@@ -7,7 +7,9 @@ But you need to add the correct settings in configure file /homestead/Homestead.
 > folders:
 >     - map: ~/projects
 >       to: /home/vagrant/projects
+
 and
+
 > sites:
 >     - map: filemanager.app
 >       to: /home/vagrant/projects/filemanager/public
