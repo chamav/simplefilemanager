@@ -4,13 +4,13 @@ Have Vagrantfile used virtulabox.
 Before launching your Homestead environment, you must install VirtualBox and Vagrant.
 But you need to add the correct settings in configure file /homestead/Homestead.yaml
 
-folders:
-    - map: ~/projects
-      to: /home/vagrant/projects
+> folders:
+>     - map: ~/projects
+>       to: /home/vagrant/projects
 and
-sites:
-    - map: filemanager.app
-      to: /home/vagrant/projects/filemanager/public
+> sites:
+>     - map: filemanager.app
+>       to: /home/vagrant/projects/filemanager/public
 
 Once you have edited the Homestead.yaml to your liking, run the vagrant up command from your Homestead directory.
 Vagrant will boot the virtual machine and automatically configure your shared folders and Nginx sites.
