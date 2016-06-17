@@ -1,6 +1,6 @@
 # Simple file manager application powered by laravel 5.2
 
-Use composer install
+Use **composer install**
 
 Have Vagrantfile used virtulabox.
 Before launching your Homestead environment, you must install VirtualBox and Vagrant.
