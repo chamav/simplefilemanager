@@ -45,13 +45,34 @@ class MainTest extends TestCase
         $this->see('test');
         $this->seeInDatabase('users', ['email' => 'test@email.com']);
         $this->seeInDatabase('users', ['name' => 'test']);
+        $this->click('Logout');
+        $this->seePageIs('/');
+        $this->see('Login');
+        $this->visit('/');
+
     }
 
     /**
-     * Test add file
+     * Test login
      */
-    public function testLogout()
+    public function testlogin()
     {
-        
+        $faker = Faker\Factory::create();
+        $email = $faker->safeEmail;
+        $password = str_random(10);
+        $name = $faker->name;
+        $user = factory(App\User::class)->create([
+            'name' => $name,
+            'email' => $email,
+            'password' => bcrypt($password),
+        ]);
+        $this->seeInDatabase('users', ['email' => $email]);
+        $this->visit('/login');
+        $this->type($email, 'email');
+        $this->type($password, 'password');
+        $this->check('remember');
+        $this->press('Login');
+        $this->seePageIs('/files');
+        $this->see($name);
     }
 }
