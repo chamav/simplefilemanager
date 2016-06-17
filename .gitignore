@@ -24,3 +24,6 @@ storage/
 #Phpstorm
 /.idea
 
+#Vagrant
+.vagrant
+
