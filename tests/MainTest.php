@@ -44,5 +44,6 @@ class MainTest extends TestCase
         $this->seePageIs('/files');
         $this->see('test');
         $this->seeInDatabase('users', ['email' => 'test@email.com']);
+        $this->seeInDatabase('users', ['name' => 'test']);
     }
 }
