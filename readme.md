@@ -2,6 +2,9 @@
 
 Use **composer install**
 
+**php artisan migrate**
+If you are using the Homestead (Vagrant) virtual machine, you should run this command from within your VM
+
 Have Vagrantfile used virtulabox.
 Before launching your Homestead environment, you must install VirtualBox and Vagrant.
 Also you need to add the correct settings in configure file /homestead/Homestead.yaml
