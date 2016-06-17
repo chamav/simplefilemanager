@@ -11,7 +11,7 @@ class User_files extends Model
    *
    * @var array
    */
-  protected $fillable = ['name'];
+  protected $fillable = ['name','hash'];
 
   /**
    * Get the user that owns the file.

@@ -55,6 +55,7 @@ class UserFilesController extends Controller
 
         $request->user()->files()->create([
             'name' => $request->name,
+            'hash' => hash('md5', rand()),
         ]);
 
         return redirect('/files');

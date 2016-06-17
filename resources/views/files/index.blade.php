@@ -60,7 +60,14 @@
                             </td>
 
                             <td>
-                                <!-- TODO: Delete Button -->
+                                <form action="{{ url('file/'.$file->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button type="submit" id="delete-file-{{ $file->id }}" class="btn btn-danger">
+                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
