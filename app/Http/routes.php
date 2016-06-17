@@ -20,5 +20,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/files', 'UserFilesController@index');
-Route::post('/files', 'UserFilesController@store');
-Route::delete('/files/{task}', 'UserFilesController@destroy');
+Route::post('/file', 'UserFilesController@store');
+Route::delete('/file/{task}', 'UserFilesController@destroy');
