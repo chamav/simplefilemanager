@@ -57,6 +57,8 @@ class UserFilesController extends Controller
         $request->user()->files()->create([
             'name' => $request->name,
             'hash' => hash('md5', rand()),
+            'size' => 0,
+            'user_id' => $request->user()->id,
         ]);
 
         return redirect('/files');
@@ -66,11 +68,11 @@ class UserFilesController extends Controller
      * Destroy the given task.
      *
      * @param  Request  $request
-     * @param  Task  $task
+     * @param  UserFile  $file
      * @return Response
      */
     public function destroy(Request $request, UserFile $file)
     {
-        //
+        $this->authorize('destroy', $file);
     }
 }
