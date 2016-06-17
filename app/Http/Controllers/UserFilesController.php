@@ -74,5 +74,8 @@ class UserFilesController extends Controller
     public function destroy(Request $request, UserFile $file)
     {
         $this->authorize('destroy', $file);
+        $file->delete();
+
+        return redirect('/files');
     }
 }
