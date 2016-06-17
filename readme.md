@@ -15,7 +15,7 @@ sites:
     - map: filemanager.app
       to: /home/vagrant/projects/filemanager/public
 ```
-Once you have edited the Homestead.yaml to your liking, run the vagrant up command from your Homestead directory.
+Once you have edited the Homestead.yaml to your liking, run the **vagrant up** command from your project directory.
 Vagrant will boot the virtual machine and automatically configure your shared folders and Nginx sites.
 
 To destroy the machine, you may use the vagrant destroy --force command.
