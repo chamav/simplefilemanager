@@ -80,4 +80,6 @@ class MainTest extends TestCase
         $this->seePageIs('/files');
         $this->see($name);
     }
+
+    //etc
 }
