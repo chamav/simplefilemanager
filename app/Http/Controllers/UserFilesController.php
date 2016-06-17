@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\UserFile;
 use Illuminate\Http\Request;
 
 //use App\User_files;
@@ -59,5 +60,17 @@ class UserFilesController extends Controller
         ]);
 
         return redirect('/files');
+    }
+
+    /**
+     * Destroy the given task.
+     *
+     * @param  Request  $request
+     * @param  Task  $task
+     * @return Response
+     */
+    public function destroy(Request $request, UserFile $file)
+    {
+        //
     }
 }
