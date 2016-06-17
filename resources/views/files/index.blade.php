@@ -19,7 +19,7 @@
                 <label for="file-name" class="col-sm-3 control-label">File</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="file-name" class="form-control">
+                    {{ Form::file('file', ['class' => 'field']) }}
                 </div>
             </div>
 
