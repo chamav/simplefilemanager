@@ -31,7 +31,7 @@ class MainTest extends TestCase
     }
 
     /**
-     * My test implementation
+     * Test registration
      */
     public function testRegistration()
     {
@@ -45,5 +45,13 @@ class MainTest extends TestCase
         $this->see('test');
         $this->seeInDatabase('users', ['email' => 'test@email.com']);
         $this->seeInDatabase('users', ['name' => 'test']);
+    }
+
+    /**
+     * Test add file
+     */
+    public function testLogout()
+    {
+        
     }
 }

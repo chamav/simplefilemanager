@@ -1,4 +1,5 @@
 <?php
+use Dotenv\Dotenv;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -17,6 +18,8 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
+
+        (new Dotenv($app->environmentPath(), '.env.testing'))->load();
 
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
